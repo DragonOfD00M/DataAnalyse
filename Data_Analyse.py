@@ -274,6 +274,5 @@ class Dataset:
             ax.plot(x_vals, regression_model(x_vals, *param), color = self.plot_options.get("linecolor", None))
         tight_layout()
 
-
 def DataAnalyst(x_axis: list, y_axis: list, axesErrors: tuple[list, list] = (None, None)):
     return Dataset(x_axis, y_axis, axesErrors)

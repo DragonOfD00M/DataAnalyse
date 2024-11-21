@@ -1,7 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='data_analyse',
+    name='Data_Analyse',
     version='0.5',
-    packages=find_packages(),
-)
+    py_modules=["Data_Analyse"],
+    install_requires=['matplotlib', 'numpy']
+    )

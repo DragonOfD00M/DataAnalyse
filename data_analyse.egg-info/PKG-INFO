@@ -1,3 +1,5 @@
 Metadata-Version: 2.1
-Name: data_analyse
+Name: Data_Analyse
 Version: 0.5
+Requires-Dist: matplotlib
+Requires-Dist: numpy
