@@ -228,7 +228,7 @@ class Dataset:
                         )
 
 
-    def func_reg(self, regression_model: 'function', show_reg_info: bool = False, ax = None, info_ax = None) -> None:
+    def func_reg(self, regression_model: 'function', show_reg_info: bool = False, ax = None, info_ax = None, return_info: bool = False) -> None | list[tuple]:
         """
         func_reg() takes a function and makes a regression based on scipy's curve_fit.
 
@@ -260,7 +260,7 @@ class Dataset:
                 fig, (ax, info_ax) = subplots(1, 2, figsize=(15, 7.5))
             
             self.initialize_plot(ax)
-            ax.plot(x_vals, regression_model(x_vals, *param), color = self.plot_options.get("linecolor", None))
+            ax.plot(x_vals, regression_model(x_vals, *param), color = self.plot_options.get("linecolor", None), linestyle=self.plot_options.get("linestyle", "solid"))
 
             info_ax.axis("off")
             counter = 0
@@ -271,8 +271,11 @@ class Dataset:
             if ax == None:
                 fig, ax = subplots(figsize = (7.5,7.5))
             self.initialize_plot(ax)
-            ax.plot(x_vals, regression_model(x_vals, *param), color = self.plot_options.get("linecolor", None))
+            ax.plot(x_vals, regression_model(x_vals, *param), color = self.plot_options.get("linecolor", None), linestyle=self.plot_options.get("linestyle", "solid"))
         tight_layout()
+
+        if return_info:
+            return list(zip(param, sqrt(diag(cov)), strict=True))
 
 def DataAnalyst(x_axis: list, y_axis: list, axesErrors: tuple[list, list] = (None, None)):
     return Dataset(x_axis, y_axis, axesErrors)

@@ -29,9 +29,11 @@ Example_Data.func_reg(Example_model)
 plt.show()
 ###########
 # Example 3: Shows both pointplot and fit, along with coefficient info
-fig, (ax1, ax2)  = plt.subplots(1, 2, figsize=(7.5,7.5))
+fig, (ax1, info_ax)  = plt.subplots(1, 2, figsize=(7.5,7.5))
 Example_Data.point_plot(ax1)
-Example_Data.func_reg(Example_model, True, ax1, ax2)
+reg_info = Example_Data.func_reg(Example_model, True, ax1, info_ax, True)
+for info in reg_info:
+    print(f"coefficient value = {info[0]}\nstandard deviation = {info[1]}\n")
 plt.show()
 ###########
 
